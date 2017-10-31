@@ -375,6 +375,7 @@ yargs.parse(process.argv.slice(2), (err, argv, output) => {
 				process.exitCode = 2;
 			}
 		}
+
 		if(firstOptions.watch || options.watch) {
 			var watchOptions = firstOptions.watchOptions || firstOptions.watch || options.watch || {};
 			if(watchOptions.stdin) {
