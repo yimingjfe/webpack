@@ -334,6 +334,7 @@ yargs.parse(process.argv.slice(2), (err, argv, output) => {
 		try {
 			compiler = webpack(options);
 		} catch(e) {
+			// 初始化的时候，为什么会有异常？是怎么做异常校验和处理的？
 			var WebpackOptionsValidationError = require("../lib/WebpackOptionsValidationError");
 			if(e instanceof WebpackOptionsValidationError) {
 				if(argv.color)
@@ -347,6 +348,7 @@ yargs.parse(process.argv.slice(2), (err, argv, output) => {
 
 		if(argv.progress) {
 			var ProgressPlugin = require("../lib/ProgressPlugin");
+			// 调用插件的apply方法，传入this
 			compiler.apply(new ProgressPlugin({
 				profile: argv.profile
 			}));
@@ -387,6 +389,7 @@ yargs.parse(process.argv.slice(2), (err, argv, output) => {
 			compiler.watch(watchOptions, compilerCallback);
 			console.log("\nWebpack is watching the files…\n");
 		} else
+			// 编译？
 			compiler.run(compilerCallback);
 
 	}
